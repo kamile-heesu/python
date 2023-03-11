@@ -1,0 +1,28 @@
+import random
+
+word_list = ["aardvark", "baboon", "camel"]
+
+chosen_word = word_list[random.randint(0, len(word_list) - 1)]
+print(f"The answer is : {chosen_word}")
+
+chosen_word_len = len(chosen_word)
+
+blank_list = []
+for blank in range(0, chosen_word_len):
+    blank = '_'
+    blank_list.append(blank)
+
+print(blank_list)
+
+flag_var = False;
+
+while not flag_var == True:
+  guess = input("Guess A letter : \n").lower()
+
+  for index, letter in enumerate(chosen_word):
+    
+    if letter == guess:
+      blank_list[index] = letter;
+      print(blank_list)
+  if not '_' in blank_list:
+    flag_var = True;
