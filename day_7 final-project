@@ -1,0 +1,43 @@
+from replit import clear
+import random
+from hangman_words import word_list
+from hangman_art import stages, logo
+
+print(logo)
+chosen_word = random.choice(word_list)
+
+chosen_word_len = len(chosen_word)
+
+blank_list = []
+for blank in range(0, chosen_word_len):
+    blank_list += '_'
+print(blank_list)
+
+flag_var = False;
+left_lives = 6;
+
+while not flag_var == True:
+  
+  guess = input("Guess A letter : \n").lower()
+  clear()
+
+  if guess in blank_list:
+    print("You've already chosen the letter " + guess);
+    
+  for index in range(0, len(chosen_word)):
+    if chosen_word[index] == guess:
+      blank_list[index] = guess;
+
+  print(blank_list)
+
+  if not guess in chosen_word:
+      clear()
+      print(f"There is no {guess} in a word. you have {left_lives - 1} chance left. \n {stages[left_lives]}");
+      left_lives -= 1;
+      if left_lives <= 0:
+        flag_var = True;
+        print(f'You loose \n{stages[left_lives]}');
+  
+  if not '_' in blank_list:
+    flag_var = True;
+    print("You saved this man");
